@@ -9,6 +9,7 @@ This data and code is released under the MIT License. Please, consider consultin
 ## Contents
 * [Introduction](#Introduction)
 * [Hard Set and Normal Set](#HardSetandNormalSet)
+* [Models](#Models)
 * [Citations](#Citations)
 
 ## Introduction
@@ -17,8 +18,11 @@ In this repo you can find the _Normal Set_ and the _Hard Set_ used to carry out 
 
 ## Hard Set and Normal Set
 
-* Hard Set: We selected those pairs whose mean participant response was very close to "Not sure", and at least one of the three participants made a mistake. We also selected those pairs where the mean response is exactly "Not sure". We obtained a total of 69 pairs (63 positive and 6 negative). After a careful manual inspection, from among the 63 positive pairs we chose the 24 most difficult ones which together with the 6 negative ones (with no occlusion _i.e._, no objects obstructing parts of the face) form the _Hard Set_. These 30 pairs can be found in `sets > hard`.
-* Normal Set: We define another set of pairs with a slightly more relaxed human certainty condition: we selected those pairs whose mean response is close to "Not sure", avoiding those whose mean is exactly "Not sure". From these pairs we randomly choose 30 pairs of images, maintaining the above ratio of 24 positive and 6 negative pairs, and avoiding repetitions with the "Hard Set". This left us with 30 pairs that will form the _Normal Set_. These 30 pairs can be found in `sets > normal`.
+* ***Hard Set***: We selected those pairs whose mean participant response was very close to "Not sure", and at least one of the three participants made a mistake. We also selected those pairs where the mean response is exactly "Not sure". We obtained a total of 69 pairs (63 positive and 6 negative). After a careful manual inspection, from among the 63 positive pairs we chose the 24 most difficult ones which together with the 6 negative ones (with no occlusion _i.e._, no objects obstructing parts of the face) form the _Hard Set_. These 30 pairs can be found in `sets > hard > imgs`. In `sets > hard > images.npy` we provide an ordered array of the filenames of the images, so each pair of filenames defines a pair of images.
+* ***Normal Set***: We define another set of pairs with a slightly more relaxed human certainty condition: we selected those pairs whose mean response is close to "Not sure", avoiding those whose mean is exactly "Not sure". From these pairs we randomly choose 30 pairs of images, maintaining the above ratio of 24 positive and 6 negative pairs, and avoiding repetitions with the "Hard Set". This left us with 30 pairs that will form the _Normal Set_. These 30 pairs can be found in `sets > normal > imgs`. In `sets > normal > images.npy` we provide an ordered array of the filenames of the images, so each pair of filenames defines a pair of images.
+
+## Models
+LightCNN pre-trained model is available [at its repo](https://github.com/AlfredXiangWu/LightCNN/tree/master), while IR50 pre-trained model is available through the frameworks [face.evoLVe](https://github.com/ZhaoJ9014/face.evoLVe?tab=readme-ov-file#Model-Zoo). For our experiments we used the ensemble model IR50+LightCNN (we considered the mean response of both models). In `sets > hard/normal > score.npy` we provide an ordered array of the scores obtained from the ensemble model for the pairs in each set (hard/normal). These scores refer to the similarity of each pair and range from 0 to 1. Also, `sets > hard/normal > output.npy` we provide an ordered array with the outputs obtained from the ensemble model for the pairs in each set. The outputs can be TP (True Positive), TN (True Negative), FP (False Positive), or FN (False Negative). 
 
 ## Citations
 Please consult and consider citing the following papers:
